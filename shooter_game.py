@@ -25,7 +25,7 @@ for i in range(5):
     enemies.add(Enemy("ufo.png", randint(1,3),randint(0,WZ[0]-pl_size[0]),randint(-100,0),True))
 
 
-asteroids = sprite.Group()
+asteroids = pygame.sprite.Group()
 for i in range(3):
     asteroids.add(Enemy("asteroid.png", 1,randint(0,WZ[0]-pl_size[0]),randint(-100,0),False))
 
@@ -63,12 +63,12 @@ while game:
                     enemy.kill()
                     counter.kill()
                     enemies.add(Enemy("ufo.png", randint(1,3),randint(0,WZ[0]-pl_size[0]),randint(-100,0),True))
-        sprite.groupcollide(bullets, asteroids, True, False)
+        pygame.sprite.groupcollide(bullets, asteroids, True, False)
 
         if counter.kill_enemy >= 10:
             game_ower = True
             window.blit(win, (WZ[0]/2,WZ[1]/2))
-        elif counter.lost_enemy >= 3 or pygame.sprite.spritecollide(player,enemies,False) or sprite.spritecollide(player,asteroids,False):
+        elif counter.lost_enemy >= 3 or pygame.sprite.spritecollide(player,enemies,False) or pygame.sprite.spritecollide(player,asteroids,False):
             game_ower = True
             window.blit(lose, (WZ[0]/2,WZ[1]/2))
         
